@@ -1,5 +1,9 @@
 # Synth
 
+
+## Disclosure
+This package was first created by @gnazareths and I will try to improve it and utilize it for my term paper in EPPE (Uni. Bonn) by March, 2019.
+
 ## Introduction
 
 A Python package for implementing the Synthetic Control Method for comparative case studies.

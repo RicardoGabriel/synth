@@ -3,6 +3,7 @@ import numpy as np
 from scipy.optimize import fmin_slsqp, minimize
 import matplotlib.pyplot as plt
 
+
 def dataprep(foo, 
              predictors, 
              treated_unit, 

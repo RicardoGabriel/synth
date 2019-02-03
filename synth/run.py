@@ -186,7 +186,7 @@ def dataprep(foo,
                 else:
                     outcome = df[0]
                     if pd.isnull(outcome):
-                        print k, j
+                        print (k, j)
                         raise NameError("dataframe has missing data")
                     if not (isinstance(outcome,float) or isinstance(outcome,int)):
                         raise NameError("dataframe contains non-numerical data")
@@ -416,21 +416,21 @@ def synth_tables(foo,
     predictors_weights = pd.DataFrame({'Weight':predict}, index=predictors)
     controls_weights = pd.DataFrame({'Weight':ctrls}, index=control_units)
 
-    print "Predictors Table"
-    print "---"
-    print predictors_table
-    print " "
-    print "Outcomes Table"
-    print "---"
-    print outcomes_table
-    print " "
-    print "Predictors' Weights"
-    print "---"
-    print predictors_weights
-    print " "
-    print "Controls' Weights"
-    print "---"
-    print controls_weights
+    print ("Predictors Table")
+    print ("---")
+    print (predictors_table)
+    print (" ")
+    print ("Outcomes Table")
+    print ("---")
+    print (outcomes_table)
+    print (" ")
+    print ("Predictors' Weights")
+    print ("---")
+    print (predictors_weights)
+    print (" ")
+    print ("Controls' Weights")
+    print ("---")
+    print (controls_weights)
 
     plt.plot(plot_time, est, plot_time, Y1)
     plt.xlim(plot_time[0],plot_time[-1])

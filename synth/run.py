@@ -93,8 +93,8 @@ def dataprep(foo,
         raise NameError("measured_variable contains non-numerical data")
     if not measured_variable in header:
         raise NameError("measured_variable not found")
-    if measured_variable in predictors:
-        raise NameError("measured_variable cannot be in predictors")
+    #if measured_variable in predictors:
+    #    raise NameError("measured_variable cannot be in predictors")
 
     ## time_variable
 
@@ -432,9 +432,15 @@ def synth_tables(foo,
     print ("---")
     print (controls_weights)
 
-    plt.plot(plot_time, est, plot_time, Y1)
-    plt.xlim(plot_time[0],plot_time[-1])
-    plt.ylim([0,.4])
+    estimates = estimated_outcomes
+    actual_values = Y1.transpose()[0]
+    plt.plot(range(len(estimates)),estimates, 'r--', label="Synthetic Control")
+    plt.plot(range(len(estimates)),actual_values, 'b-', label="Actual Data")    
+    plt.axvline(x=predict_time[-1])
+    plt.title("Synthetic Control Model")
+    plt.ylabel(measured_variable)
+    plt.xlabel(time_variable)
+    plt.legend(loc='upper left')
     plt.show()
 
     return

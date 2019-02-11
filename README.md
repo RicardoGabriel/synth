@@ -4,7 +4,9 @@
 ## Disclosure
 This package was first created by @gnazareths and I will try to improve it and utilize it for my term paper in EPPE (Uni. Bonn) by March, 2019.
 
-First, I will try to face current limitation number 2 by implementing a change in the code which will transform an excel file in a panda dataframe using the method read_excel() find in https://pythonspot.com/read-excel-with-pandas/
+First, I will try to face current limitation number 2 by implementing a change in the code which will transform an excel file in a panda dataframe using the method pd.read_excel() find in https://pythonspot.com/read-excel-with-pandas/
+
+Secondly, I provide a working example to compute a Synthetic Japan using the outcome variable as predicted variable as well (a second useful extension to the already great code by @gnazareths).
 
 ## Introduction
 

@@ -335,6 +335,13 @@ def dataprep(foo,
 
     return X0.as_matrix(), X1.as_matrix(), Y0.as_matrix(), Y1.as_matrix(), Z0.as_matrix(), Z1.as_matrix()
 
+#    x0=X0.as_matrix()
+#    x1=X1.as_matrix()
+#    y0=Y0.as_matrix()
+#    y1=Y1.as_matrix()
+#    z0=Z0.as_matrix()
+#    z1=Z1.as_matrix()
+
 def w_rss(w, v, x0, x1):
     k = len(x1)
     importance = np.zeros((k,k))
@@ -365,8 +372,8 @@ def get_v_0(v, w, x0, x1, z0, z1):
     return rss
 
 def get_v_1(v, w, x0, x1, z0, z1):
-    result = minimize(get_v_0, v, args=(w, x0, x1, z0, z1), bounds=[(0.0, 1.0)]*len(v)).x
-    #result = fmin_slsqp(get_v_0, v, args=(w, x0, x1, z0, z1), bounds=[(0.0, 1.0)]*len(v))
+    #result = minimize(get_v_0, v, args=(w, x0, x1, z0, z1), bounds=[(0.0, 1.0)]*len(v)).x
+    result = fmin_slsqp(get_v_0, v, args=(w, x0, x1, z0, z1), bounds=[(0.0, 1.0)]*len(v))
     return result
 
 def get_estimate(x0, x1, z0, z1, y0):
@@ -407,8 +414,8 @@ def synth_tables(foo,
                  function="mean")
 
     (est, predict, ctrls) = get_estimate(X0, X1, Z0, Z1, Y0)
-    predict = [ round(elem,4) for elem in predict ]
-    ctrls = [ round(elem,4) for elem in ctrls ]
+    predict = [ round(elem,6) for elem in predict ]
+    ctrls = [ round(elem,6) for elem in ctrls ]
     estimated_predictors = np.dot(X0,ctrls).transpose()
     predictors_table = pd.DataFrame({'Synthetic':estimated_predictors, 'Actual': X1.transpose()[0]}, index=predictors)
     estimated_outcomes = np.dot(Y0,ctrls)
@@ -435,14 +442,15 @@ def synth_tables(foo,
     estimates = estimated_outcomes
     actual_values = Y1.transpose()[0]
     plt.plot(range(len(estimates)),estimates, 'r--', label="Synthetic Control")
-    plt.plot(range(len(estimates)),actual_values, 'b-', label="Actual Data")    
+    plt.plot(range(len(estimates)),actual_values, 'b-', label="Actual Data")
     plt.axvline(x=predict_time[-1])
     plt.title("Synthetic Control Model")
     plt.ylabel(measured_variable)
     plt.xlabel(time_variable)
     plt.legend(loc='upper left')
+    plt.savefig('Synthetic_Control_Method.pdf')
     plt.show()
-
+    
     return
     
 ## test code example

@@ -11,7 +11,7 @@ using 32 OECD countries to be our donor pool
 
 import pandas as pd
 import matplotlib.pyplot as plt
-import run
+import synth
 
 df = pd.read_excel('Dataset_TermPaper.xlsx', header=0).iloc[:3135]
 
